@@ -1,6 +1,6 @@
-<h2>{{ bridge.name | titlecase }}</h2>
+<h2 *ngIf="bridge">{{ bridge.name | titlecase }}</h2>
 
-<div class="bridge-stats">
+<div *ngIf="bridge" class="bridge-stats">
     <div>Year: {{ bridge.year}} ({{ age() }} years)</div>
     <div>Width: {{ width() }}</div>
     <div>Length: {{ length() }}</div>

@@ -1,6 +1,6 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
-import { Bridge } from '../bridge';
-import { Bridges } from '../bridges';
+import { Component, OnInit } from '@angular/core';
+import { BridgeId, Bridge } from '../bridge';
+import { DataManagerService } from '../data-manager.service';
 
 @Component({
   selector: 'app-menu',
@@ -9,18 +9,18 @@ import { Bridges } from '../bridges';
 })
 export class MenuComponent implements OnInit {
 
-  bridges: Array<Bridge> = Bridges;
+  bridges: BridgeId[];
   
-  @Output() bridgeSelected: EventEmitter<Bridge> = new EventEmitter();
+  constructor(
+    private dataService: DataManagerService
+  ) { }
 
-  constructor() { }
-
-  ngOnInit(): void {
+  trackByBridges(index: number, bridge: BridgeId): string {
+    return bridge.id;
   }
 
-  onBridgeSelected(bridge: Bridge): void {
-    console.log('onBridgeSelected', bridge);
-    this.bridgeSelected.emit(bridge);
+  ngOnInit(): void {
+    this.dataService.getBridges().subscribe(data => this.bridges = data);
   }
 
 }

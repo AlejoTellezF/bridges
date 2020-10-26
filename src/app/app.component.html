@@ -4,8 +4,8 @@
     (bridgeSelected)="handleBridgeChange($event)"
   ></app-menu>
 
-  <app-bridge-info
-   id="bridge-info"
-   [bridge]="currentBridge"
-  ></app-bridge-info>
+  <div id="bridge-info">
+    <router-outlet></router-outlet>
+  </div>
+
 </div>
